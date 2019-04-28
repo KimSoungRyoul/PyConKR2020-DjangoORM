@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django_extensions',
     'django_extensions_shell',
 
-    'hello',
     'orm_practice_app',
 ]
 
