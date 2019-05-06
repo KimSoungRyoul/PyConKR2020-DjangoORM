@@ -5,7 +5,7 @@ from django.db.models import Q, FilteredRelation, F, Sum, Avg, Subquery, Prefetc
 from orm_practice_app.models import Company, Product, Order, OrderedProduct
 
 
-def asdf(request):
+def asdf():
     Product.objects.filter(name='product_name3', product_owned_company__name='company_name20').select_related(
         'product_owned_company')
 
@@ -118,7 +118,7 @@ def asdf(request):
      LEFT OUTER JOIN "orm_practice_app_company" ON ("orm_practice_app_product"."product_owned_company_id" = "orm_practice_app_company"."id")
       WHERE "orm_practice_app_product"."price" > 24000 
     """
-
+    Product.objects.filter(price__gt=24000, product_owned_company__isnull=False).select_related('product_owned_company')
     Product.objects.filter(price__gt=24000, product_owned_company__isnull=False).select_related('product_owned_company')
     """
     SELECT * 
