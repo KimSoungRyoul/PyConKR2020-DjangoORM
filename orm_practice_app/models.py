@@ -28,7 +28,7 @@ class OrderedProduct(models.Model):
 class Order(models.Model):
     descriptions: str = models.CharField(null=False, default='비어있음..', max_length=128)
     reg_date: datetime = models.DateTimeField(auto_created=True)
-    order_owner: User = models.ForeignKey(to=User, on_delete=models.CASCADE, null=False, blank=False)
+    order_owner: User = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True, blank=False)
     product_set_included_order: set = models.ManyToManyField(to=Product, related_name='ordered_product_set',
                                                              through='OrderedProduct',
                                                              through_fields=('related_order', 'related_product'),

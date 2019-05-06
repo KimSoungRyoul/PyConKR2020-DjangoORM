@@ -128,9 +128,9 @@ def asdf(request):
     """
 
     # 4-1 Join Table에 제약 주기  FilteredRelation()는 Django2.0부터 가능
-    Product.objects.annotate(this_is_join_table_name=FilteredRelation('product_owned_company',
+    Product.objects.select_related('this_is_join_table_name').annotate(this_is_join_table_name=FilteredRelation('product_owned_company',
                                                                       condition=Q(
-                                                                          product_owned_company__name='company_name34'), ),
+                                                                          product_owned_company__name='company_name34'),),
                              ).filter(this_is_join_table_name__isnull=False)
     """
     SELECT "orm_practice_app_product"."id", "orm_practice_app_product"."name", "orm_practice_app_product"."price", "orm_practice_app_product"."product_owned_company_id" 
@@ -168,6 +168,20 @@ def asdf(request):
         INNER JOIN "orm_practice_app_company" ON ("orm_practice_app_product"."product_owned_company_id" = "orm_practice_app_company"."id") 
     WHERE ("orm_practice_app_orderedproduct"."product_cnt" = 23000 AND "orm_practice_app_company"."name"::text LIKE '%comapny\_name%') 
     """
+
+    OrderedProduct.objects.filter(product_cnt=23000).prefetch_related(
+        Prefetch('related_product__product_owned_company',
+                 queryset=Company.objects.filter(name__contains='comapny_name')))
+    """
+    SELECT "orm_practice_app_orderedproduct"."id", "orm_practice_app_orderedproduct"."product_cnt",
+       "orm_practice_app_orderedproduct"."amount_of_credited_mileage", "orm_practice_app_orderedproduct"."related_product_id",
+       "orm_practice_app_orderedproduct"."related_order_id"
+    FROM "orm_practice_app_orderedproduct" 
+      INNER JOIN "orm_practice_app_product" ON ("orm_practice_app_orderedproduct"."related_product_id" = "orm_practice_app_product"."id")
+      INNER JOIN "orm_practice_app_company" ON ("orm_practice_app_product"."product_owned_company_id" = "orm_practice_app_company"."id") 
+    WHERE ("orm_practice_app_orderedproduct"."product_cnt" = 23000 AND "orm_practice_app_company"."name"::text LIKE '%comapny\_name%')
+    """
+
 
     order_list: Order = Order.objects.filter(id=3).prefetch_related('product_set_included_order')
     """
