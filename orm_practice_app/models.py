@@ -22,7 +22,7 @@ class OrderedProduct(models.Model):
     amount_of_credited_mileage: int = models.PositiveIntegerField(null=False)
 
     related_product: Product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    related_order = models.ForeignKey('Order', on_delete=models.CASCADE)
+    related_order = models.ForeignKey('Order', on_delete=models.CASCADE,null=True)
 
 
 class Order(models.Model):

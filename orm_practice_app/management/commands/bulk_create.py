@@ -4,6 +4,7 @@ from django.core.management import BaseCommand
 
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
+from django.db import transaction
 from django.utils import timezone
 
 from orm_practice_app.models import Company, Product, Order, OrderedProduct
