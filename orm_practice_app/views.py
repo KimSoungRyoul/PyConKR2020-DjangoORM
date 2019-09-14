@@ -1,6 +1,7 @@
-from django.contrib.auth.models import User
-from django.db.models import Q, FilteredRelation, F, Sum, Avg, Subquery, Prefetch
+from typing import List
 
+from django.contrib.auth.models import User
+from django.db.models import Q, FilteredRelation, F, Sum, Avg, Subquery, Prefetch, QuerySet
 
 from orm_practice_app.models import Company, Product, Order, OrderedProduct
 
@@ -17,15 +18,48 @@ def asdf():
     OrderedProduct.objects.filter(related_order__order_owner__user_permissions__isnull=True)
     OrderedProduct.objects.filter(product_cnt=30).prefetch_related('related_order')
 
-    # 1-1 이 쿼리는 select_related()사용하지 않았어도 OrderedProduct는 order의 pk를 들고있기 때문에 해당 order(related_order)에 대해 inner join하면 쉽게 order를 들고올수있다
-    # filter related_order에 대한 조건문이
-    OrderedProduct.objects.filter(id=1, related_order__descriptions='sdfsdf')  # .select_related('related_order')
+    # product_set을 prefetched_related로 가져오는 쿼리셋 선언
+    company_queryset: QuerySet = Company.objects.prefetch_related('product_set').filter(name='company_name1')
+    # 쿼리셋을 수행하면 아래와 같은 쿼리 2개 발생 문제 없음
+    comapny_list: List[Company]= list(company_queryset)
     """
-    SELECT *
-        FROM "orm_practice_app_orderedproduct" 
-        INNER JOIN "orm_practice_app_order" ON ("orm_practice_app_orderedproduct"."related_order_id" = "orm_practice_app_order"."id")
-         WHERE ("orm_practice_app_orderedproduct"."id" = 1 AND "orm_practice_app_order"."descriptions" = 'sdfsdf')
+    SELECT "orm_practice_app_company"."id", "orm_practice_app_company"."name", "orm_practice_app_company"."tel_num", "orm_practice_app_company"."address" 
+        FROM "orm_practice_app_company" 
+            WHERE "orm_practice_app_company"."name" = 'company_name1'  LIMIT 21;
+    -- prefetch_related() 구절이 아래 SQL을 부른다 --       
+    SELECT "orm_practice_app_product"."id", "orm_practice_app_product"."name", "orm_practice_app_product"."price", "orm_practice_app_product"."product_owned_company_id" 
+        FROM "orm_practice_app_product" 
+            WHERE "orm_practice_app_product"."product_owned_company_id" IN (1, 21);
+
     """
+    # 위와같은 방식에는 문제가 없다
+    # 하지만?
+    company_queryset: QuerySet = Company.objects.prefetch_related(
+        Prefetch('product_set', queryset=Product.objects.filter(product__name='product_name3'))).filter(
+        name='company_name1')
+    # 이렇게 product관련 조건절이 추가된다면 어떨까
+    # 쿼리셋을 수행하면 아래와 같은 잘못된 쿼리가 발생한다.
+    comapny_list: List[Company] = list(company_queryset)
+    """
+    SELECT "orm_practice_app_company"."id", "orm_practice_app_company"."name", "orm_practice_app_company"."tel_num", "orm_practice_app_company"."address" 
+        FROM "orm_practice_app_company" 
+            INNER JOIN "orm_practice_app_product" ON ("orm_practice_app_company"."id" = "orm_practice_app_product"."product_owned_company_id") 
+        WHERE ("orm_practice_app_company"."name" = 'company_name1' AND "orm_practice_app_product"."name" = 'product_name3')  LIMIT 21;
+    -- prefetch_related가 쿼리를 발생시켰지만 윗 쿼리에서 불필요한 조인이 발생한다. --
+    SELECT "orm_practice_app_product"."id", "orm_practice_app_product"."name", "orm_practice_app_product"."price", "orm_practice_app_product"."product_owned_company_id" 
+        FROM "orm_practice_app_product" 
+    WHERE "orm_practice_app_product"."product_owned_company_id" IN (1);
+
+    """
+    # 이는 가장 흔히 발생할수 있는 문제다. 해당 쿼리셋을 수행했을때
+    # 1.조인을 하던지
+    # 2.추가쿼리에서 조건절이 붙던지
+    # 둘중 하나만 수행되었어야 효율적인 쿼리다. 그러나 생각없이 prefetch_related를 붙이면 이런식으로 잘못된 쿼리가 수행될수있다
+
+
+
+
+
 
     # 1-2 이 쿼리는 prefetch_related를 사용했음에도 불구하고 QuerySet 평가시 추가적인 쿼리가 불필요하다 판단하여 inner join 전략을 택한다. 이경우는 .prefetch_related('related_order') 이 로직은 무시된다
     OrderedProduct.objects.filter(Q(product_cnt=30) & Q(related_order__descriptions='asdf')).prefetch_related('related_order')
@@ -75,7 +109,6 @@ def asdf():
 
     
     """
-
 
     # 앞 쿼리들의 결과에서도 봤듯이 OrderProduct->Order 참조에 관련된 쿼리는 정방향 참조이기때문에 충분히 inner join 전략을 택할수 있다
     # 그래서 앞에서 prefetch_related()를 붙이지 않거나 prefetch_related를 붙이더라도 +1 query를 만들지 않고 Django QuerySet은 최대한 inner join전략을 택하려고 노력한다.
