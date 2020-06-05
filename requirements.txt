@@ -2,7 +2,7 @@ certifi==2019.3.9
 chardet==3.0.4
 coreapi==2.3.3
 coreschema==0.0.4
-Django==2.2.1
+Django==2.2.13
 django-extensions==2.1.6
 django-extensions-shell==1.7.4.1
 django-query-logger==0.1.2
