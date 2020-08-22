@@ -1,0 +1,10 @@
+asgiref==3.2.10
+Django==3.1
+django-extensions==2.1.6
+django-extensions-shell==1.7.4.1
+django-query-logger==0.1.2
+psycopg2==2.8.5
+psycopg2-binary==2.8.5
+pytz==2020.1
+six==1.15.0
+sqlparse==0.3.1
