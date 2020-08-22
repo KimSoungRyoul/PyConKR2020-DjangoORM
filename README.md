@@ -15,7 +15,7 @@
 https://github.com/KimSoungRyoul/Django_ORM_pratice_project/blob/master/orm_practice_app/queryset_pratice.py
 
 
-### Quick Start (직접 이 프로젝트 써보기) 
+### Quick Start (이 프로젝트 써보기) 
 
 1. `git clone git@github.com:KimSoungRyoul/Django_ORM_pratice_project.git`
 2. `pip install -r requirements.txt`
