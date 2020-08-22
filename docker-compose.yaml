@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres
+    container_name: postgres_for_orm_pratice
+    environment:
+      - POSTGRES_PASSWORD=password
+    ports:
+      - '5439:5432'
+    volumes:
+      - .volume/postgres:/var/lib/postgresql/data
