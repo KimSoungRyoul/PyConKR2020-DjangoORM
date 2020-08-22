@@ -23,3 +23,14 @@ https://github.com/KimSoungRyoul/Django_ORM_pratice_project/blob/master/orm_prac
 4. `python manage.py migrate`
 5. `python manage.py bulk_create` // DB에 적당히 더미데이터 생성합니다.
 6. `python manage.py shell_plus` // 쉘플러스 접속해서 자기가 원하는QuerySet을 실행해봅니다 (jupiter도 좋고 shell_plus도 좋고!)
+
+
+
+### queryset 관련 도움이 되는 글들
+
+* [Django ORM CookBook 전체적인 QuerySet 사용법을 설명하는 책입니다](https://books.agiliq.com/projects/django-orm-cookbook/en/latest/)  
+
+
+* [Django에서는 QuerySet이 당신을 만듭니다 (1)](https://medium.com/deliverytechkorea/django-queryset-1-14b0cc715eb7)
+
+* [Django에서는 QuerySet이 당신을 만듭니다 (2)](https://medium.com/deliverytechkorea/django%EC%97%90%EC%84%9C%EB%8A%94-queryset%EC%9D%B4-%EB%8B%B9%EC%8B%A0%EC%9D%84-%EB%A7%8C%EB%93%AD%EB%8B%88%EB%8B%A4-2-5f6f8c6cd7e3)
