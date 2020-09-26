@@ -10,9 +10,10 @@
 
 
 #### QuerySet과 SQL 매칭 결과 (Postgresql 기준이지만 기초적인 SQL문법수행이라 다른DB들과 결과는 동일)
-* 굳이 이 프로젝트를 clone 안해도 이 파일만 봐도 django QuerySet을 이해하는데 충분히 도움이 될거라 생각됩니다.
+* 굳이 이 프로젝트를 clone 안해도 issue창에 도움이 될만한 내용들을 정리해놔서 충분히 도움이 될거라 생각됩니다.
 
-https://github.com/KimSoungRyoul/Django_ORM_pratice_project/blob/master/orm_practice_app/queryset_pratice.py
+https://github.com/KimSoungRyoul/Django_ORM_pratice_project/issues
+https://github.com/KimSoungRyoul/Django_ORM_pratice_project/blob/master/orm_practice_app/queryset_pratice.py  (쿼리셋 연습장)
 
 
 ### Quick Start (이 프로젝트 써보기) 
