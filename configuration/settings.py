@@ -111,6 +111,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = "orm_practice_app.User"
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# 이 옵션은 프로젝트내에서 수행되는 SQL을 전부 로깅해주는 옵션입니다.
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
