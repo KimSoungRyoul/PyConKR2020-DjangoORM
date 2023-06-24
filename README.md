@@ -7,6 +7,14 @@
 
 쿼리셋 수행 결과를 기록해놓음
 
+---
+
+### 이 Repo 관련 자료는 책의 초안으로 활용되었고 더 쉽게 정리해서 한빛미디어 [백엔드 개발자를 위한 핸즈온 장고] 책으로 출간했습니다. [2023-06]
+* ### https://github.com/KimSoungRyoul/django-backend-starter Repo 에서 체계적으로 관리합니다
+<img src="https://github.com/KimSoungRyoul/Django_ORM_pratice_project/assets/24240623/c4df85f5-92ac-4d78-bbbd-fea7de72aea4" width="20%" height="10%">
+
+
+---
 
 
 #### QuerySet과 SQL 매칭 결과 (Postgresql 기준이지만 기초적인 SQL문법수행이라 다른DB들과 결과는 동일)
@@ -35,3 +43,6 @@ https://github.com/KimSoungRyoul/Django_ORM_pratice_project/blob/master/orm_prac
 * [Django에서는 QuerySet이 당신을 만듭니다 (1)](https://medium.com/deliverytechkorea/django-queryset-1-14b0cc715eb7)
 
 * [Django에서는 QuerySet이 당신을 만듭니다 (2)](https://medium.com/deliverytechkorea/django%EC%97%90%EC%84%9C%EB%8A%94-queryset%EC%9D%B4-%EB%8B%B9%EC%8B%A0%EC%9D%84-%EB%A7%8C%EB%93%AD%EB%8B%88%EB%8B%A4-2-5f6f8c6cd7e3)
+
+
+
