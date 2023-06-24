@@ -7,7 +7,8 @@
 
 쿼리셋 수행 결과를 기록해놓음
 
-* ### [PyCon2020 발표자료PDF 다운로드 바로가기](https://github.com/KimSoungRyoul/PyCon2020-DjangoORM/issues/7)
+---
+### [PyCon2020 발표자료PDF 다운로드 바로가기](https://github.com/KimSoungRyoul/PyCon2020-DjangoORM/issues/7)
 <img alt="aaa" src="https://github.com/KimSoungRyoul/PyCon2020-DjangoORM/assets/24240623/525a1040-48a7-449a-b312-ac56ab5e59d9" width="30%" height="10%">
 
 
@@ -16,7 +17,7 @@
 ---
 
 ### 이 Repo 관련 자료는 한빛미디어 [백엔드 개발자를 위한 핸즈온 장고] 책의 초안으로 활용되었고 더 쉽게 정리해서 출간했습니다. [2023-06]
-* ### https://github.com/KimSoungRyoul/django-backend-starter Django ORM 뿐만 아니라 전체적인 내용을 체계적으로 관리해보려합니다.
+* ### [django-backend-starter](https://github.com/KimSoungRyoul/django-backend-starter) Repo에서 Django ORM 뿐만 아니라 전체적인 내용을 체계적으로 관리해보려합니다.
 <img src="https://github.com/KimSoungRyoul/Django_ORM_pratice_project/assets/24240623/c4df85f5-92ac-4d78-bbbd-fea7de72aea4" width="20%" height="10%">
 
 
