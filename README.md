@@ -9,7 +9,12 @@
 
 ---
 ### [PyCon2020 발표자료PDF 다운로드 바로가기](https://github.com/KimSoungRyoul/PyCon2020-DjangoORM/issues/7)
-<img alt="aaa" src="https://github.com/KimSoungRyoul/PyCon2020-DjangoORM/assets/24240623/525a1040-48a7-449a-b312-ac56ab5e59d9" width="30%" height="10%">
+<img alt="aaa" src="https://github.com/KimSoungRyoul/PyCon2020-DjangoORM/assets/24240623/525a1040-48a7-449a-b312-ac56ab5e59d9" width="40%" height="10%">
+
+
+
+### [[YouTube] Django ORM (QuerySet)구조와 원리 그리고 최적화전략 - PyCon Korea 2020](https://www.youtube.com/watch?v=EZgLfDrUlrk)
+<img alt="aabba" src="https://github.com/KimSoungRyoul/PyConKR2020-DjangoORM/assets/24240623/78ee7ceb-88ca-44c3-be76-e2565f632685" width="50%" height="10%">
 
 
 
